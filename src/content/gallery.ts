@@ -1,0 +1,91 @@
+import { GalleryItem } from "@/lib/types";
+
+export const galleryIntro = {
+  heading: "Gallery",
+  subtext:
+    "A collection of artwork created with Cyclomat. Each piece is generated purely through harmonic motion — no hand-drawing, no randomness. Just frequency, radius, and time.",
+};
+
+export const galleryItems: GalleryItem[] = [
+  {
+    id: "harmonic-bloom",
+    title: "Harmonic Bloom",
+    description: "A flowering form created by layering two shapes with complementary frequencies.",
+    arms: 2,
+    layers: 2,
+    complexity: "simple",
+    colors: ["#a78bfa", "#f472b6"],
+  },
+  {
+    id: "orbital-weave",
+    title: "Orbital Weave",
+    description: "Three arms in counter-rotation produce a dense, woven lattice of curves.",
+    arms: 3,
+    layers: 1,
+    complexity: "moderate",
+    colors: ["#60a5fa", "#34d399"],
+  },
+  {
+    id: "phase-mandala",
+    title: "Phase Mandala",
+    description: "A mandala-like composition created by phase-shifting a single shape across multiple layers.",
+    arms: 2,
+    layers: 5,
+    complexity: "complex",
+    colors: ["#fbbf24", "#f97316", "#ef4444"],
+  },
+  {
+    id: "crystal-lattice",
+    title: "Crystal Lattice",
+    description: "High-frequency arms create delicate, crystal-like structures with mathematical precision.",
+    arms: 4,
+    layers: 1,
+    complexity: "complex",
+    colors: ["#67e8f9", "#a5b4fc"],
+  },
+  {
+    id: "gentle-spiral",
+    title: "Gentle Spiral",
+    description: "Non-integer frequencies create open, spiraling forms that never quite close.",
+    arms: 2,
+    layers: 1,
+    complexity: "simple",
+    colors: ["#c084fc"],
+  },
+  {
+    id: "resonance-field",
+    title: "Resonance Field",
+    description: "Multiple layers with slight frequency offsets create a shimmering interference pattern.",
+    arms: 3,
+    layers: 4,
+    complexity: "complex",
+    colors: ["#818cf8", "#e879f9", "#fb7185"],
+  },
+  {
+    id: "twin-orbit",
+    title: "Twin Orbit",
+    description: "Two simple shapes layered with contrasting colors and partial opacity.",
+    arms: 2,
+    layers: 2,
+    complexity: "simple",
+    colors: ["#4ade80", "#22d3ee"],
+  },
+  {
+    id: "fractal-echo",
+    title: "Fractal Echo",
+    description: "Four arms create self-similar patterns that echo at different scales.",
+    arms: 4,
+    layers: 3,
+    complexity: "complex",
+    colors: ["#f472b6", "#a78bfa", "#60a5fa"],
+  },
+  {
+    id: "solar-corona",
+    title: "Solar Corona",
+    description: "Warm-toned layers radiating outward, inspired by the geometry of light.",
+    arms: 3,
+    layers: 3,
+    complexity: "moderate",
+    colors: ["#fbbf24", "#f97316", "#dc2626"],
+  },
+];
