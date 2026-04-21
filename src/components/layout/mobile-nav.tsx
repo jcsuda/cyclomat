@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -16,12 +16,24 @@ export function MobileNav({ items }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open]);
+
   return (
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
         className="rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground"
         aria-label={open ? "Close navigation" : "Open navigation"}
+        aria-expanded={open}
+        aria-controls="mobile-nav-menu"
       >
         {open ? <X className="size-5" /> : <Menu className="size-5" />}
       </button>
@@ -29,6 +41,7 @@ export function MobileNav({ items }: MobileNavProps) {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-nav-menu"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -41,6 +54,7 @@ export function MobileNav({ items }: MobileNavProps) {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className={cn(
                     "rounded-lg px-3 py-3 text-base font-medium transition-colors",
                     pathname === item.href

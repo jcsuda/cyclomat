@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CopyrightYear } from "./copyright-year";
 
 const footerLinks = [
   {
@@ -13,7 +14,7 @@ const footerLinks = [
     title: "Learn",
     links: [
       { label: "Getting Started", href: "/learn" },
-      { label: "Tutorials", href: "/learn" },
+      { label: "Layers & Color", href: "/learn#layers-and-color" },
       { label: "About", href: "/about" },
     ],
   },
@@ -52,7 +53,9 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 border-t border-border/40 pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Cyclomat. All rights reserved.</p>
+          <p>
+            &copy; <CopyrightYear /> Cyclomat. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

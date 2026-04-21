@@ -10,6 +10,8 @@ interface TutorialStepCardProps {
   description: string;
   tip?: string;
   index?: number;
+  /** When true the vertical connector line below the step number is hidden. */
+  isLast?: boolean;
   className?: string;
 }
 
@@ -19,6 +21,7 @@ export function TutorialStepCard({
   description,
   tip,
   index = 0,
+  isLast = false,
   className,
 }: TutorialStepCardProps) {
   return (
@@ -37,7 +40,7 @@ export function TutorialStepCard({
         <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-sm font-semibold text-primary">
           {step}
         </div>
-        <div className="mt-2 h-full w-px bg-border/50" />
+        {!isLast && <div className="mt-2 h-full w-px bg-border/50" />}
       </div>
       <div className="pb-10">
         <h4 className="mb-2 text-lg font-semibold">{title}</h4>

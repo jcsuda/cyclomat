@@ -1,5 +1,3 @@
-"use client";
-
 import { PageHero } from "@/components/marketing/page-hero";
 import { SectionWrapper } from "@/components/marketing/section-wrapper";
 import { GalleryCard } from "@/components/gallery/gallery-card";

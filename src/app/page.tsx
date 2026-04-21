@@ -1,14 +1,12 @@
-"use client";
-
 import { Hero } from "@/components/marketing/hero";
 import { SectionWrapper } from "@/components/marketing/section-wrapper";
 import { SectionHeading } from "@/components/marketing/section-heading";
 import { FeatureCard } from "@/components/marketing/feature-card";
 import { ArtworkPreview } from "@/components/marketing/artwork-preview";
 import { CTASection } from "@/components/marketing/cta-section";
+import { FadeIn } from "@/components/ui/fade-in";
 import { heroContent, introContent, features, whyDifferent } from "@/content/home";
 import { galleryItems } from "@/content/gallery";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -50,19 +48,16 @@ export default function HomePage() {
         <SectionHeading heading={whyDifferent.heading} />
         <div className="grid gap-8 md:grid-cols-3">
           {whyDifferent.points.map((point, i) => (
-            <motion.div
+            <FadeIn
               key={point.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              index={i}
               className="text-center md:text-left"
             >
               <h3 className="mb-2 text-lg font-semibold">{point.title}</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {point.description}
               </p>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
       </SectionWrapper>
@@ -80,20 +75,14 @@ export default function HomePage() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {showcaseItems.map((item, i) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
+            <FadeIn key={item.id} index={i}>
               <ArtworkPreview
                 colors={item.colors}
                 title={item.title}
                 seed={item.id.length * 7 + item.arms * 13}
                 className="aspect-square"
               />
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
         <div className="mt-6 text-center md:hidden">

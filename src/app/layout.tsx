@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,13 +15,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteDescription =
+  "Create complex, beautiful geometric artwork through harmonic motion. No equations needed — just curiosity and a sense of play.";
+
 export const metadata: Metadata = {
   title: {
     default: "Cyclomat — Geometric Art Through Harmonic Motion",
     template: "%s | Cyclomat",
   },
-  description:
-    "Create complex, beautiful geometric artwork through harmonic motion. No equations needed — just curiosity and a sense of play.",
+  description: siteDescription,
   keywords: [
     "spirograph",
     "geometric art",
@@ -29,6 +32,17 @@ export const metadata: Metadata = {
     "cycloid",
     "parametric art",
   ],
+  openGraph: {
+    type: "website",
+    siteName: "Cyclomat",
+    title: "Cyclomat — Geometric Art Through Harmonic Motion",
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cyclomat — Geometric Art Through Harmonic Motion",
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
@@ -42,9 +56,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <MotionProvider>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </MotionProvider>
       </body>
     </html>
   );

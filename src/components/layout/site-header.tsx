@@ -22,6 +22,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="text-lg font-semibold tracking-tight transition-colors hover:text-primary"
+          aria-label="Cyclomat home"
         >
           Cyclomat
         </Link>
@@ -31,6 +32,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
               className={cn(
                 "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 pathname === item.href

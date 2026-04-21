@@ -1,11 +1,9 @@
-"use client";
-
 import { PageHero } from "@/components/marketing/page-hero";
 import { SectionWrapper } from "@/components/marketing/section-wrapper";
 import { ConceptBlock } from "@/components/marketing/concept-block";
 import { CTASection } from "@/components/marketing/cta-section";
+import { FadeIn } from "@/components/ui/fade-in";
 import { pageIntro, concepts, keyPrinciple } from "@/content/how-it-works";
-import { motion } from "framer-motion";
 
 export default function HowItWorksPage() {
   return (
@@ -27,18 +25,15 @@ export default function HowItWorksPage() {
       </SectionWrapper>
 
       <SectionWrapper>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <FadeIn
+          duration={0.6}
           className="mx-auto max-w-3xl rounded-2xl border border-primary/20 bg-primary/5 p-10 text-center"
         >
           <blockquote className="text-2xl font-semibold tracking-tight md:text-3xl">
             &ldquo;{keyPrinciple.text}&rdquo;
           </blockquote>
           <p className="mt-4 text-muted-foreground">{keyPrinciple.subtext}</p>
-        </motion.div>
+        </FadeIn>
       </SectionWrapper>
 
       <CTASection

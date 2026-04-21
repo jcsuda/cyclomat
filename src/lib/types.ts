@@ -3,7 +3,8 @@ export interface NavItem {
   href: string;
 }
 
-export interface FeatureCard {
+/** Renamed from FeatureCard to avoid collision with the FeatureCard component. */
+export interface FeatureCardData {
   title: string;
   description: string;
   icon: string;

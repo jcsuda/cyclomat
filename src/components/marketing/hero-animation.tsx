@@ -14,6 +14,7 @@ interface Arm {
   phase: number;
 }
 
+// Radii are expressed at a 500 px reference size and scaled to the actual canvas.
 const ARM_SETS: Arm[][] = [
   [
     { freq: 3, radius: 100, phase: 0 },
@@ -29,6 +30,8 @@ const ARM_SETS: Arm[][] = [
   ],
 ];
 
+const REFERENCE_SIZE = 500;
+
 export function HeroAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
@@ -40,11 +43,13 @@ export function HeroAnimation() {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const size = 500;
+    // Read the CSS-rendered size so the buffer matches the display box exactly.
+    // CSS classes on the element control the display size; we never override them.
+    const size = canvas.offsetWidth > 0 ? canvas.offsetWidth : REFERENCE_SIZE;
+    const scale = size / REFERENCE_SIZE;
+
     canvas.width = size * dpr;
     canvas.height = size * dpr;
-    canvas.style.width = `${size}px`;
-    canvas.style.height = `${size}px`;
     ctx.scale(dpr, dpr);
 
     const cx = size / 2;
@@ -66,8 +71,8 @@ export function HeroAnimation() {
           let x = cx;
           let y = cy;
           for (const arm of arms) {
-            x += arm.radius * Math.cos(arm.freq * t + arm.phase);
-            y += arm.radius * Math.sin(arm.freq * t + arm.phase);
+            x += arm.radius * scale * Math.cos(arm.freq * t + arm.phase);
+            y += arm.radius * scale * Math.sin(arm.freq * t + arm.phase);
           }
           if (i === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
@@ -76,15 +81,14 @@ export function HeroAnimation() {
       });
 
       if (progress < 1) {
-        progress += 0.003;
-      } else {
-        progress = 1;
+        progress = Math.min(progress + 0.003, 1);
+        // Only schedule the next frame while the animation is still running.
+        animRef.current = requestAnimationFrame(draw);
       }
-
-      animRef.current = requestAnimationFrame(draw);
+      // When progress reaches 1 the final frame has been drawn; no more frames needed.
     }
 
-    draw();
+    animRef.current = requestAnimationFrame(draw);
 
     return () => cancelAnimationFrame(animRef.current);
   }, []);

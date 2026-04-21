@@ -1,10 +1,8 @@
-"use client";
-
 import { PageHero } from "@/components/marketing/page-hero";
 import { SectionWrapper } from "@/components/marketing/section-wrapper";
 import { CTASection } from "@/components/marketing/cta-section";
+import { FadeIn } from "@/components/ui/fade-in";
 import { aboutIntro, philosophy, invitation } from "@/content/about";
-import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
@@ -14,20 +12,14 @@ export default function AboutPage() {
       <SectionWrapper>
         <div className="mx-auto max-w-3xl space-y-16">
           {philosophy.map((section, i) => (
-            <motion.div
-              key={section.heading}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
+            <FadeIn key={section.heading} index={i}>
               <h2 className="mb-4 text-2xl font-semibold tracking-tight">
                 {section.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {section.body}
               </p>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
       </SectionWrapper>

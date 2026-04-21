@@ -1,4 +1,4 @@
-import { FeatureCard } from "@/lib/types";
+import { FeatureCardData } from "@/lib/types";
 
 export const heroContent = {
   headline: "Draw with harmony, motion, and time",
@@ -16,7 +16,7 @@ export const introContent = {
     "Cyclomat is a creative tool that generates complex, beautiful geometric artwork through harmonic motion. Rotating arms trace paths that become spirograph-like patterns — from elegant curves to densely layered compositions.",
 };
 
-export const features: FeatureCard[] = [
+export const features: FeatureCardData[] = [
   {
     title: "Harmonic Frequencies",
     description:
